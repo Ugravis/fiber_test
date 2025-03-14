@@ -2,6 +2,7 @@ package main
 
 import (
 	"fiber-test/internal/database"
+	"fiber-test/internal/middleware"
 	"fiber-test/internal/routes"
 	"log"
 	"os"
@@ -21,6 +22,8 @@ func main() {
 		AppName: "Fiber test API",
 		ErrorHandler: customErrorHandler,
 	})
+
+	app.Use(middleware.SimpleLogger())
 
 	routes.SetupRoutes(app)
 	
